@@ -69,9 +69,8 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
           retVal.setName(module.substring(0, module.indexOf("/")));
         }
       }
-      UsecaseDefinition usecase = new UsecaseDefinition();
+      UsecaseDefinition usecase = new UsecaseDefinition(guicctx.page().id());
       usecase.setModule(module);
-      usecase.setName(guicctx.page().id());
 
       PageDefinition pagedef = new PageDefinition(module);
       pagedef.setId(guicctx.page().id());
@@ -86,7 +85,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       for (GuidbaseWidget widget : guicctx.page().children()) {
         pagedef.addWidget(convertToWidget(widget, pagedef));
       }
-      usecase.setPage(pagedef);
+//      usecase.setPage(pagedef);
       retVal.addUsecase(usecase);
     }
     return retVal;
@@ -182,18 +181,18 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
   public Set<String> getTriggerComponents() throws Exception {
     Set<String> retVal = new HashSet<>();
     for (UsecaseDefinition usecase : application.getUsecases()) {
-      for (WidgetDefinition widget : usecase.getPage().getPageWidgets()) {
-        String trigger = widget.getOption("trigger");
-        if (trigger != null) {
-          Invocation invo = (Invocation) Ablang.statements(trigger).get(0);
-          retVal.add(invo.getComponent().getName());
-        }
-        String create = widget.getOption("create");
-        if (create != null) {
-          Invocation invo = (Invocation) Ablang.statements(create).get(0);
-          retVal.add(invo.getComponent().getName());
-        }
-      }
+//      for (WidgetDefinition widget : usecase.getPage().getPageWidgets()) {
+//        String trigger = widget.getOption("trigger");
+//        if (trigger != null) {
+//          Invocation invo = (Invocation) Ablang.statements(trigger).get(0);
+//          retVal.add(invo.getComponent().getName());
+//        }
+//        String create = widget.getOption("create");
+//        if (create != null) {
+//          Invocation invo = (Invocation) Ablang.statements(create).get(0);
+//          retVal.add(invo.getComponent().getName());
+//        }
+//      }
     }
     return retVal;
   }
@@ -224,7 +223,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
   public Set<String> getComponentNames() throws Exception {
     Set<String> retVal = new HashSet<>();
     for (UsecaseDefinition usecase : application.getUsecases()) {
-      retVal.addAll(getComponentNames(usecase.getPage()));
+//      retVal.addAll(getComponentNames(usecase.getPage()));
     }
     return retVal;
   }
