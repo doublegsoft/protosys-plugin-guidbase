@@ -17,10 +17,6 @@ import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.DefaultObjectWrapper;
-import io.doublegsoft.ablang.Ablang;
-import io.doublegsoft.ablang.model.Invocation;
-import io.doublegsoft.ablang.model.Statement;
-import io.doublegsoft.ablang.model.Variable;
 import io.doublegsoft.guidbase.GuidbaseContext;
 import io.doublegsoft.guidbase.GuidbaseWidget;
 import io.doublegsoft.tatabase.Tatabase;
@@ -198,21 +194,6 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
   }
 
   /**
-   * Delegates to the {@link Ablang#statements(String)} method.
-   *
-   * @param expr
-   *        the ablang expression
-   *
-   * @return the statements
-   *
-   * @throws Exception
-   *        in case of any errors
-   */
-  public List<Statement> statements(String expr) throws Exception {
-    return Ablang.statements(expr);
-  }
-
-  /**
    * Gets the using builtin components of an application used in the templates.
    *
    * @return the component names
@@ -224,54 +205,6 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
     Set<String> retVal = new HashSet<>();
     for (UsecaseDefinition usecase : application.getUsecases()) {
 //      retVal.addAll(getComponentNames(usecase.getPage()));
-    }
-    return retVal;
-  }
-
-  /**
-   * Gets the using builtin components of a page used in the templates.
-   *
-   * @param page
-   *        the page definition
-   *
-   * @return the component names
-   *
-   * @throws Exception
-   *        in case of any errors
-   */
-  public Set<String> getComponentNames(PageDefinition page) throws Exception {
-    Set<String> retVal = new HashSet<>();
-    for (WidgetDefinition widget : page.getPageWidgets()) {
-      String trigger = widget.getOption("trigger");
-      if (trigger != null) {
-        retVal.addAll(getComponentNames(Ablang.statements(trigger)));
-      }
-      String initial = widget.getOption("initial");
-      if (initial != null) {
-        retVal.addAll(getComponentNames(Ablang.statements(initial)));
-      }
-    }
-    return retVal;
-  }
-
-  /**
-   * Gets the builtin component names from ablang statements.
-   *
-   * @param stmts
-   *        the ablang statements
-   *
-   * @return the component names
-   */
-  private Set<String> getComponentNames(List<Statement> stmts) {
-    Set<String> retVal = new HashSet<>();
-    for (Statement stmt : stmts) {
-      if (stmt instanceof Invocation) {
-        Invocation invoc = (Invocation) stmt;
-        Variable component = invoc.getComponent();
-        if (component != null && component.getName() != null) {
-          retVal.add(component.getName());
-        }
-      }
     }
     return retVal;
   }
