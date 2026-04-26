@@ -30,10 +30,7 @@ import org.doublegsoft.protosys.commons.FileSystemTemplateBasedPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * TODO: ADD DESCRIPTION
@@ -51,7 +48,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
 
   public ApplicationDefinition createApplication(String guidbaseSource) throws IOException {
     ApplicationDefinition retVal = new ApplicationDefinition();
-    List<GuidbaseContext> guicctxs = GuidbaseContext.from(guidbaseSource);
+    List<GuidbaseContext> guicctxs = new ArrayList<>();// GuidbaseContext.from(guidbaseSource);
 
     for (GuidbaseContext guicctx : guicctxs) {
       String module = guicctx.page().attr("module");
