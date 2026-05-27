@@ -131,9 +131,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       application.setName(globals.get("application"));
     }
     globals.put("helper", new GuidbaseHelper());
-    if (globals != null) {
-      globalVariables.putAll(globals);
-    }
+    globalVariables.putAll(globals);
     visitAndRender(outputRoot, "", templateRoot, "", application, globals);
   }
 
