@@ -48,7 +48,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
 
   public ApplicationDefinition createApplication(String guidbaseSource) throws IOException {
     ApplicationDefinition retVal = new ApplicationDefinition();
-    List<GuidbaseContext> guicctxs = new ArrayList<>();// GuidbaseContext.from(guidbaseSource);
+    List<GuidbaseContext> guicctxs = GuidbaseContext.from(guidbaseSource);
 
     for (GuidbaseContext guicctx : guicctxs) {
       String module = guicctx.page().attr("module");
@@ -78,8 +78,8 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       for (GuidbaseWidget widget : guicctx.page().children()) {
         pagedef.addWidget(convertToWidget(widget, pagedef));
       }
-//      usecase.setPage(pagedef);
       retVal.addUsecase(usecase);
+      retVal.addPage(pagedef);
     }
     return retVal;
   }
