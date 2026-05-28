@@ -51,12 +51,17 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
     List<GuidbaseContext> guicctxs = GuidbaseContext.from(guidbaseSource);
 
     for (GuidbaseContext guicctx : guicctxs) {
+      String pageId = guicctx.page().id();
       String module = guicctx.page().attr("module");
       if (module == null) {
-        module = "unknown";
+        if (pageId.contains("/")) {
+          module = pageId.substring(0, pageId.lastIndexOf("/"));
+        } else {
+          module = "unknown";
+        }
       }
       if (retVal.getName() == null) {
-        if (module.indexOf("/") == -1) {
+        if (!module.contains("/")) {
           retVal.setName(module);
         } else {
           retVal.setName(module.substring(0, module.indexOf("/")));
@@ -66,10 +71,14 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       usecase.setModule(module);
 
       PageDefinition pagedef = new PageDefinition(module);
-      pagedef.setId(guicctx.page().id());
+      if (pageId.contains("/")) {
+        pagedef.setName(pageId.substring(pageId.lastIndexOf("/") + 1));
+      } else {
+        pagedef.setName(pageId);
+      }
       pagedef.setType("page");
       pagedef.setModule(module);
-      pagedef.setName(guicctx.page().id());
+      pagedef.setId(guicctx.page().id());
       pagedef.setTitle(guicctx.page().attr("title"));
       pagedef.setPosition(Position.at(guicctx.page().attr("position")));
       guicctx.page().attrs().forEach(attr -> {
