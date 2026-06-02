@@ -215,12 +215,10 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
   public static void main(String[] args) throws Exception {
     Options options = new Options();
 
-    options.addOption("m", "modelbase", true, "模型定义文件");
-    options.addOption("u", "misuml", true, "用例定义文件");
-    options.addOption("i", "guidbase", true, "界面定义文件");
+    options.addOption("m", "modelbase-model", true, "模型定义文件");
+    options.addOption("g", "guidbase-model", true, "界面定义文件");
     options.addOption("t", "template-root", true, "模板定义根目录");
     options.addOption("o", "output-root", true, "输出根路径");
-    options.addOption("b", "tatabase", true, "tatabase数据目录");
     options.addOption("l", "license", true, "license文件");
     options.addOption("g", "globals", true, "全局变量");
 
@@ -229,17 +227,12 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
 
     String templateRoot = cmd.getOptionValue("template-root");
     String outputRoot = cmd.getOptionValue("output-root");
-    String modelbasePaths = cmd.getOptionValue("modelbase");
-    String misumlPaths = cmd.getOptionValue("misuml");
-    String tatabase = cmd.getOptionValue("tatabase");
-    String guidbasePaths = cmd.getOptionValue("guidbase");
+    String modelbasePaths = cmd.getOptionValue("modelbase-model");
+    String guidbasePaths = cmd.getOptionValue("guidbase-model");
 
     String globals = cmd.getOptionValue("globals");
     String licensePath = cmd.getOptionValue("license");
-
     String license;
-
-    DomainObject.setDataDir(tatabase);
 
     HashObject globalVars = new HashObject();
     Gson gson = new Gson();
