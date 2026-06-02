@@ -129,9 +129,6 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       model = createModelFromModelbase(modelbases);
       globalVariables.put("model", model);
     }
-    if (guidbases == null) {
-      guidbases = new String[0];
-    }
     StringBuilder guidbaseModel = new StringBuilder();
     for (String guidbaseFile : guidbases) {
       guidbaseModel.append(new String(Files.readAllBytes(new File(guidbaseFile).toPath()))).append("\n");
