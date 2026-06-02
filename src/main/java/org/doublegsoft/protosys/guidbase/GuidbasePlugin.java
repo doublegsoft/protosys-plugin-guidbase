@@ -178,25 +178,6 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
     renderTo(outputRoot, outputPath, outputName, tmlpath, tmlname, model);
   }
 
-  public Set<String> getTriggerComponents() throws Exception {
-    Set<String> retVal = new HashSet<>();
-    for (UsecaseDefinition usecase : application.getUsecases()) {
-//      for (WidgetDefinition widget : usecase.getPage().getPageWidgets()) {
-//        String trigger = widget.getOption("trigger");
-//        if (trigger != null) {
-//          Invocation invo = (Invocation) Ablang.statements(trigger).get(0);
-//          retVal.add(invo.getComponent().getName());
-//        }
-//        String create = widget.getOption("create");
-//        if (create != null) {
-//          Invocation invo = (Invocation) Ablang.statements(create).get(0);
-//          retVal.add(invo.getComponent().getName());
-//        }
-//      }
-    }
-    return retVal;
-  }
-
   /**
    * Gets the using builtin components of an application used in the templates.
    *
