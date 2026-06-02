@@ -26,6 +26,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.doublegsoft.protosys.commons.FileSystemTemplateBasedPlugin;
+import org.doublegsoft.protosys.commons.LocalFileTemplateLoader;
 
 import java.io.File;
 import java.io.IOException;
