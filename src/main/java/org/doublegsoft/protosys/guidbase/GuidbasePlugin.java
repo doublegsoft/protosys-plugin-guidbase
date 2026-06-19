@@ -231,6 +231,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
     if (namingClass != null) {
       Object naming = Class.forName(namingClass).newInstance();
       globalVars.set("globalNamingConvention", naming);
+      globalVars.set("naming", naming);
     }
 
     if (licensePath != null) {
