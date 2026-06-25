@@ -130,6 +130,11 @@
       <version>7.0</version>
     </dependency>
     <dependency>
+      <groupId>io.doublegsoft.valuebase</groupId>
+      <artifactId>valuebase</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
       <groupId>com.doublegsoft.jcommons</groupId>
       <artifactId>jcommons-metabean</artifactId>
     </dependency>

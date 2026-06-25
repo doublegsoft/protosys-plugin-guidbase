@@ -21,6 +21,7 @@ import io.doublegsoft.guidbase.GuidbaseContext;
 import io.doublegsoft.guidbase.GuidbaseWidget;
 import io.doublegsoft.tatabase.Tatabase;
 import io.doublegsoft.tatabase.ne.DomainObject;
+import io.doublegsoft.valuebase.Valuebase;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -222,6 +223,7 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
       globalVars.putAll(gson.fromJson(globals, Map.class));
     }
     globalVars.set("tatabase", TATABASE);
+    globalVars.set("valuebase", new Valuebase());
     globalVars.set("grid", new Grid());
     globalVars.set("dart", new DartConventions());
     globalVars.set("shell", new ShellConventions());
