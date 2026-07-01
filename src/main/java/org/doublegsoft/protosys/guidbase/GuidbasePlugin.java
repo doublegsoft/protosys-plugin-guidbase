@@ -135,10 +135,15 @@ public class GuidbasePlugin extends FileSystemTemplateBasedPlugin {
     for (String guidbaseFile : guidbases) {
       guidbaseModel.append(new String(Files.readAllBytes(new File(guidbaseFile).toPath()))).append("\n");
     }
+
     application = createApplication(guidbaseModel.toString());
     application.setModel(model);
     if (globals.containsKey("application")) {
       application.setName(globals.get("application"));
+    }
+    List<WidgetDefinition> containers = new ArrayList<>();
+    for (PageDefinition page : application.getPages()) {
+      containers.addAll(page.getContainers());
     }
     globals.put("helper", new GuidbaseHelper());
     globalVariables.putAll(globals);
